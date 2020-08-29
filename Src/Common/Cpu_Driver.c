@@ -69,6 +69,11 @@ void CpuDriver_StopCriticalSection(void)
 	}	
 }
 
+void CpuDriver_SoftwareReset(void)
+{
+    APINT = CORTEXM4_APINT_VECTKEY|(0x0004);
+}
+
 
 /******************************************************************************
 * \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)        

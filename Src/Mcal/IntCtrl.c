@@ -56,7 +56,7 @@ void IntCrtl_Init(void)
 {
 
 	/*TODO Configure Grouping\SubGrouping System in APINT register in SCB*/
-    APINT = 0xFA05|0x00001234;
+    APINT = (0x05FAul<<16)|(0x00000);
     
     /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/  
 

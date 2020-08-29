@@ -49,6 +49,9 @@ typedef union
 #define CORTEXM4_PERI_INTCTRL_OFFSET			(0xD04)
 #define CORTEXM4_PERI_APINT_OFFSET				(0xD0C)
 
+#define CORTEXM4_APINT_VECTKEY_VAL              (0x05FAul)
+#define CORTEXM4_APINT_VECTKEY                  (CORTEXM4_APINT_VECTKEY_VAL << 16)
+
 #define APINT                                  *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+CORTEXM4_PERI_APINT_OFFSET))
 #define INTCTRL                                ((volatile INTCTRL_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+CORTEXM4_PERI_INTCTRL_OFFSET))
 

@@ -17,8 +17,9 @@
  *********************************************************************************************************************/
 #include "Std_Types.h"
 #include "Bit_Operation.h"
-#include "Mcu_Hw.h"
+#include "Cpu_Driver.h"
 #include "Platform_Types.h"
+#include "IntCtrl.h"
 
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
@@ -48,8 +49,7 @@
 int main(void)
 {
 	
-	for(;;);
-	
+	for(;;);	
 }
 
 
