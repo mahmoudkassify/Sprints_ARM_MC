@@ -1,7 +1,7 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
-/**        \file  FileName.c
+/**        \file  Cpu_Driver.c
  *        \brief  
  *
  *      \details  
@@ -18,13 +18,14 @@
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
 *********************************************************************************************************************/
-#define CPU_SWITCH_TO_PRIVMODE_LOCAL()   do{__asm("MOV R0, 0x0\n");\
-																				 __asm("MSR CONTROL, R0\n");}while(0)
+#define CPUDRIVER_SWITCH_TO_PRIVMODE_LOCAL()   do{	__asm("MRS r0, CONTROL\n");\
+													__asm("AND r0, 	0xFFFFFFFE\n");\
+													__asm("MSR CONTROL, r0\n");}while(0)
 
 /**********************************************************************************************************************
  *  LOCAL DATA 
  *********************************************************************************************************************/
-static uint8 counter = 0;
+static uint8 gu8_counter = 0;
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
@@ -40,23 +41,32 @@ static uint8 counter = 0;
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
-void Cpu_StartCriticalSection(void)
+void CpuDriver_StartCriticalSection(void)
 {
-	counter ++;
-	if(counter <=1)
+	gu8_counter++;
+	
+	if(1 >= gu8_counter)
 	{
-		CPU_DISABLE_ALL_Interupts();
+		CPUDRIVER_DISABLE_ALL_Interupts();
+	}
+	else
+	{
+		/*Already Disabled before*/
 	}
 }
 
-void Cpu_StopCriticalSection(void)
+void CpuDriver_StopCriticalSection(void)
 {
-	counter --;
+	gu8_counter--;
 	
-	if(counter == 0)
+	if(gu8_counter == 0)
 	{
-		CPU_ENABLE_ALL_Interupts();
+		CPUDRIVER_ENABLE_ALL_Interupts();
 	}
+	else
+	{
+		/*Should be zero to enable it*/
+	}	
 }
 
 
@@ -71,10 +81,12 @@ void Cpu_StopCriticalSection(void)
 * \Return value:   : Std_ReturnType  E_OK
 *                                    E_NOT_OK                                  
 *******************************************************************************/
-void Isr_svcHAndler(void)
+__asm void SVC_Handler(void)
 {
-	CPU_SWITCH_TO_PRIVMODE_LOCAL();
+    MRS r0, CONTROL
+	AND r0, #0xFFFFFFFE
+	MSR CONTROL, r0
 }
 /**********************************************************************************************************************
- *  END OF FILE: FileName.c
+ *  END OF FILE: Cpu_Driver.c
  *********************************************************************************************************************/

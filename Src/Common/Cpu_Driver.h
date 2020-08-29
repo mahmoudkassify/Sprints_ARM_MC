@@ -2,14 +2,14 @@
 
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  <Write File Name>
+ *         File:  <Cpu_Driver.h>
  *       Module:  -
  *
  *  Description:  <Write File DESCRIPTION here>     
  *  
  *********************************************************************************************************************/
-#ifndef CPU_DRIVER_H_
-#define CPU_DRIVER_H_
+#ifndef _CPU_DRIVER_H_
+#define _CPU_DRIVER_H_
 
 /**********************************************************************************************************************
  * INCLUDES
@@ -24,15 +24,16 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
  *********************************************************************************************************************/
-#define CPU_SWITCH_TO_PRIVMODE()   		__asm("SVC #1")
+#define CPUDRIVER_SWITCH_TO_PRIVMODE()   		__asm("SVC #0")
 
 
-#define CPU_SWITCH_TO_USERMODE()  	 do{__asm("MOV R0, 0x1\n");\
-																			__asm("MSR CONTROL, R0\n");}while(0)
+#define CPUDRIVER_SWITCH_TO_USERMODE()  	 	do{__asm("MRS R0, CONTROL");\
+												__asm("OR R0, 0x1");\
+												__asm("MSR CONTROL, R0");}while(0)
 
 
-#define CPU_DISABLE_ALL_Interupts()		__asm ("CPSID i")
-#define CPU_ENABLE_ALL_Interupts()		__asm ("CPSIE i")
+#define CPUDRIVER_DISABLE_ALL_Interupts()		__asm ("CPSID i")
+#define CPUDRIVER_ENABLE_ALL_Interupts()		__asm ("CPSIE i")
 
 
 /**********************************************************************************************************************
@@ -48,11 +49,11 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
-void Cpu_StartCriticalSection(void);
-void Cpu_StopCriticalSection(void);
+void CpuDriver_StartCriticalSection(void);
+void CpuDriver_StopCriticalSection(void);
  
-#endif  /* FILE_NAME_H */
+#endif  /* _CPU_DRIVER_H_ */
 
 /**********************************************************************************************************************
- *  END OF FILE: Std_Types.h
+ *  END OF FILE: Cpu_Driver.h
  *********************************************************************************************************************/
