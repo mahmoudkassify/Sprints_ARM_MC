@@ -28,3 +28,4 @@
 #define RAM_BITBAND(add, bit_num)                           WRITE_BITBAND(RAM_BITBAND_ALIAS, RAM_BITBAND_REGION, add, bit_num)  
 
 #endif /*_H_BIT_OPERATION_*/
+
