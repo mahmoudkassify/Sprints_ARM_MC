@@ -50,6 +50,7 @@ int main(void)
 {
 	CPUDRIVER_ENABLE_ALL_Interupts();
     
+    IntCrtl_Init();
     
 	for(;;);	
 }
