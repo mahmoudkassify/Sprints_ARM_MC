@@ -71,7 +71,13 @@ void CpuDriver_StopCriticalSection(void)
 
 void CpuDriver_SoftwareReset(void)
 {
-    APINT = CORTEXM4_APINT_VECTKEY|(0x0004);
+    uint32 APINT_Temp = APINT;
+    
+    APINT_Temp &= ~((uint32)(CORTEXM4_APINT_VECTKEY_Msk | CORTEXM4_APINT_SW_RESET_Msk));
+    
+    APINT = (APINT_Temp                     |
+             CORTEXM4_APINT_VECTKEY         |
+             0x0004                         );
 }
 
 

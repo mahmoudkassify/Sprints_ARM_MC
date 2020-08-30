@@ -32,6 +32,10 @@
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
 
+typedef struct{
+    IntCtrl_PriGroup    PriorityGrouping;
+    IntCtrl_InterConfig InterConfig[INTCTRL_SUPPORTED_NUMBER];
+}IntCtrl_Config;
 
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES

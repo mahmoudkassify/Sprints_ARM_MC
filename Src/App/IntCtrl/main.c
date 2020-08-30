@@ -48,7 +48,9 @@
 
 int main(void)
 {
-	
+	CPUDRIVER_ENABLE_ALL_Interupts();
+    
+    
 	for(;;);	
 }
 

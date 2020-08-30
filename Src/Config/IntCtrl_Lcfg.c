@@ -13,6 +13,7 @@
  *  INCLUDES
  *********************************************************************************************************************/
 #include "Std_Types.h"
+#include "IntCtrl.h"
 
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
@@ -25,7 +26,27 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
-
+const IntCtrl_Config IntCtrl_Sys_Config = 
+{
+    .PriorityGrouping = PriGroup_YYY,
+    
+    .InterConfig = 
+    {
+        /*GPIOA_IRQ*/
+        {
+            .InterruptType       = GPIOA_IRQ,
+            .GroupPriority       = GroupPriorityNum_0,
+            .SubGroupPriority    = SubGroupPriorityNum_0, 
+        },
+        
+        /*UART1_IRQ*/
+        {
+            .InterruptType       = UART1_IRQ,
+            .GroupPriority       = GroupPriorityNum_0,
+            .SubGroupPriority    = SubGroupPriorityNum_1, 
+        },        
+    }
+};
 
 
 /**********************************************************************************************************************
