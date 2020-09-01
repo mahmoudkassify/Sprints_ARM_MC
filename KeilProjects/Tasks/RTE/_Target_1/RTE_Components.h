@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'FirstProject' 
+ * Project: 'Tasks_TivaC' 
  * Target:  'Target 1' 
  */
 
