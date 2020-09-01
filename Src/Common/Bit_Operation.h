@@ -37,6 +37,8 @@
 
 #define GET_BIT_STATUS(var, bit_num)                        (0UL != ((var) & (1UL << (bit_num))))
 
+#define ARRAY_SIZE(arr)                                     (sizeof(arr)/sizeof(arr[0]))
+
 #define WRITE_BITBAND(alias_base, base_add, add, bit_num)   (alias_base +( 32 * (add - base_add) ) + bit_num * 4)  
 
 #define PERIPHERAL_BITBAND(add, bit_num)                    WRITE_BITBAND(PERIPHERAL_BITBAND_ALIAS, PERIPHERAL_BITBAND_REGION, add, bit_num)  

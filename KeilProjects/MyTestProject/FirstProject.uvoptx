@@ -212,7 +212,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\Sprints_ARM_MC\Src\Mcal\IntCtrl.c</PathWithFileName>
+      <PathWithFileName>..\..\Src\Mcal\IntCtrl.c</PathWithFileName>
       <FilenameWithoutPath>IntCtrl.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -232,7 +232,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\Sprints_ARM_MC\Src\App\IntCtrl\main.c</PathWithFileName>
+      <PathWithFileName>..\..\Src\App\IntCtrl\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -252,7 +252,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\Sprints_ARM_MC\Src\Config\IntCtrl_Cfg.h</PathWithFileName>
+      <PathWithFileName>..\..\Src\Config\IntCtrl_Cfg.h</PathWithFileName>
       <FilenameWithoutPath>IntCtrl_Cfg.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -264,7 +264,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\Sprints_ARM_MC\Src\Config\IntCtrl_Lcfg.c</PathWithFileName>
+      <PathWithFileName>..\..\Src\Config\IntCtrl_Lcfg.c</PathWithFileName>
       <FilenameWithoutPath>IntCtrl_Lcfg.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -284,7 +284,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\Sprints_ARM_MC\Src\Common\Cpu_Driver.c</PathWithFileName>
+      <PathWithFileName>..\..\Src\Common\Cpu_Driver.c</PathWithFileName>
       <FilenameWithoutPath>Cpu_Driver.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

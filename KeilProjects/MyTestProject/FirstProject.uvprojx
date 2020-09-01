@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Sprints_ARM_MC\Platforms\tm4c123gh6pm;..\..\Sprints_ARM_MC\Src\Common;..\..\Sprints_ARM_MC\Src\Config;..\..\Sprints_ARM_MC\Src\Mcal;..\..\Sprints_ARM_MC\Src\Mcal\Inc</IncludePath>
+              <IncludePath>..\..\Platforms\tm4c123gh6pm;..\..\Src\Common;..\..\Src\Config;..\..\Src\Mcal;..\..\Src\Mcal\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -385,7 +385,7 @@
             <File>
               <FileName>IntCtrl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Sprints_ARM_MC\Src\Mcal\IntCtrl.c</FilePath>
+              <FilePath>..\..\Src\Mcal\IntCtrl.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -395,7 +395,7 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Sprints_ARM_MC\Src\App\IntCtrl\main.c</FilePath>
+              <FilePath>..\..\Src\App\IntCtrl\main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -405,12 +405,12 @@
             <File>
               <FileName>IntCtrl_Cfg.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\Sprints_ARM_MC\Src\Config\IntCtrl_Cfg.h</FilePath>
+              <FilePath>..\..\Src\Config\IntCtrl_Cfg.h</FilePath>
             </File>
             <File>
               <FileName>IntCtrl_Lcfg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Sprints_ARM_MC\Src\Config\IntCtrl_Lcfg.c</FilePath>
+              <FilePath>..\..\Src\Config\IntCtrl_Lcfg.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -420,7 +420,7 @@
             <File>
               <FileName>Cpu_Driver.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Sprints_ARM_MC\Src\Common\Cpu_Driver.c</FilePath>
+              <FilePath>..\..\Src\Common\Cpu_Driver.c</FilePath>
             </File>
           </Files>
         </Group>
