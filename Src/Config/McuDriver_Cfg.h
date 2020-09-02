@@ -16,6 +16,11 @@
  *********************************************************************************************************************/
 #include "Std_Types.h"
 
+typedef enum
+{
+    Mcu_Clock_0,
+    Mcu_Clock_1,
+}Mcu_ClockType;
 
 #define MCUDRIVER_CLOCK_SUPPORTED_NUMBER            (2)
 

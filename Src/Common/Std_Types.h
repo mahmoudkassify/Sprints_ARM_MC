@@ -24,15 +24,16 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-# define STD_HIGH     (1u)
-# define STD_LOW      (0u)
+#define STD_HIGH     (1u)
+#define STD_LOW      (0u)
 
-# define STD_ACTIVE   (1u)
-# define STD_IDLE     (0u)
+#define STD_ACTIVE   (1u)
+#define STD_IDLE     (0u)
 
-# define STD_ON       (1u)
-# define STD_OFF      (0u)
+#define STD_ON       (1u)
+#define STD_OFF      (0u)
 
+#define NULL         ((void *) 0)
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/

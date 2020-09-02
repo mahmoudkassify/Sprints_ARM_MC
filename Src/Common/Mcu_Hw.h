@@ -68,14 +68,35 @@ typedef struct
 {
    uint32   SysCtrlHandler;
 }SYSHNDCTRL_Type;
+
+typedef struct
+{
+    uint32 RESC_EXT     : 1;
+    uint32 RESC_POR     : 1;
+    uint32 RESC_BOR     : 1;
+    uint32 RESC_WDT0    : 1;
+    uint32 RESC_SW      : 1;
+    uint32 RESC_WDT1    : 1;
+    uint32              : 10;
+    uint32 RESC_MOSCFAIL: 1;
+    uint32              : 15;
+}RESC_BF;
+
+typedef union 
+{
+    uint32 Register;
+    RESC_BF BitAcess;
+}RESC_Type;
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
+#define CORTEXM4_SYS_CNTRL_BASE_ADDRESS         (0x400FE000)
 #define CORTEXM4_PERI_BASE_ADDRESS				(0xE000E000)
 #define CORTEXM4_PERI_INTCTRL_OFFSET			(0xD04)
 #define CORTEXM4_PERI_APINT_OFFSET				(0xD0C)
 #define CORTEXM4_PERI_SYSPRI_OFFSET             (0xD18)
 #define CORTEXM4_PERI_SYSHNDCTRL_OFFSET         (0xD24)
+#define CORTEXM4_SYS_CNTRL_RESC_OFFSET          (0x05C)
 
 #define CORTEXM4_PERI_NVIC_OFFSET				(0x100)
 
@@ -108,6 +129,9 @@ typedef struct
 #define NVIC                                   ((volatile NVIC_Type*)(CORTEXM4_PERI_BASE_ADDRESS + CORTEXM4_PERI_NVIC_OFFSET))
 #define SYSPRI                                 ((volatile SYSPRI_Type*)(CORTEXM4_PERI_BASE_ADDRESS + CORTEXM4_PERI_SYSPRI_OFFSET))
 #define SYSHNDCTRL                             ((volatile SYSHNDCTRL_Type*)(CORTEXM4_PERI_BASE_ADDRESS + CORTEXM4_PERI_SYSHNDCTRL_OFFSET))
+
+#define RESC                                   ((volatile RESC_Type*)(CORTEXM4_SYS_CNTRL_BASE_ADDRESS + CORTEXM4_SYS_CNTRL_RESC_OFFSET))
+
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
  *********************************************************************************************************************/

@@ -43,9 +43,8 @@
  *********************************************************************************************************************/
  
 /******************************************************************************
-* \Syntax          : void IntCrtl_Init(void)                                      
-* \Description     : initialize Nvic\SCB Module by parsing the Configuration 
-*                    into Nvic\SCB registers                                    
+* \Syntax          : void Mcu_Init(const Mcu_ConfigType * Mcu_Config)                                      
+* \Description     :                                     
 *                                                                             
 * \Sync\Async      : Synchronous                                               
 * \Reentrancy      : Non Reentrant                                             
@@ -53,10 +52,15 @@
 * \Parameters (out): None                                                      
 * \Return value:   : None
 *******************************************************************************/
-void McuDriver_Init(void);
+void Mcu_Init(const Mcu_ConfigType * Mcu_Config);
 
 
 void Mcu_PerformReset(void);
+
+
+Mcu_Reset_Cause_Type Mcu_RawResetType(void);
+
+Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockType);
 
 #endif  /* McuDriver_H */
 

@@ -27,6 +27,28 @@
  *  GLOBAL DATA
  *********************************************************************************************************************/
 
+const Mcu_ConfigType Mcu_Config[] = 
+{
+    {
+        .Clock_Source           = Mcu_Clock_Source_Mosc,
+        .Clock_PLL_used         = Mcu_Clock_PLL_Enabled,
+        .Clock_Supported_Freq   = Mcu_Clock_25MHZ,
+    },
+    
+    {
+        .Clock_Source           = Mcu_Clock_Source_PIosc,
+        .Clock_PLL_used         = Mcu_Clock_PLL_Disabled,
+        .Clock_Supported_Freq   = Mcu_Clock_16MHZ,
+    },
+};
+
+const Mcu_Clock_Gate Mcu_Activated_Clock_Gates[] = 
+{
+    Mcu_Clock_Gate_WD0,
+    Mcu_Clock_Gate_GPIOA,
+    Mcu_Clock_Gate_GPIOB,
+    Mcu_Clock_Gate_GPIOE,    
+};
 
 
 /**********************************************************************************************************************
