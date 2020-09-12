@@ -58,7 +58,7 @@ typedef enum {/*From page 16 in Tiva™ TM4C123GH6PM Microcontroller Datasheet */
   ADC0SS1_IRQ                  =  15,
   ADC0SS2_IRQ                  =  16,
   ADC0SS3_IRQ                  =  17,
-  WATCHDOG0_IRQ                =  18,
+  WATCHDOG0_1_IRQ              =  18,
   TIMER0A_IRQ                  =  19,
   TIMER0B_IRQ                  =  20,
   TIMER1A_IRQ                  =  21,

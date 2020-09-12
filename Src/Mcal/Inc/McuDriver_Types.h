@@ -40,9 +40,8 @@ typedef enum
 
 typedef enum
 {
-    Mcu_Clock_16MHZ,
-    Mcu_Clock_25MHZ,
-    
+    Mcu_Clock_16MHZ = 16000,
+    Mcu_Clock_25MHZ = 25000,    
 }Mcu_Clock_Supported_Freq;
 
 typedef enum

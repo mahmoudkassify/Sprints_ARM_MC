@@ -21,7 +21,7 @@
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-
+#define PIOSC_DEFAULT_FREQ      (16) /*16 MHZ*/
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
@@ -61,6 +61,10 @@ void Mcu_PerformReset(void);
 Mcu_Reset_Cause_Type Mcu_RawResetType(void);
 
 Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockType);
+
+Std_ReturnType Mcu_DistributePllClock(void);
+
+Std_ReturnType Mcu_GetPllStatus(void);
 
 #endif  /* McuDriver_H */
 

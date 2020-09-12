@@ -86,17 +86,41 @@ typedef union
 {
     uint32 Register;
     RESC_BF BitAcess;
-}RESC_Type;
+}RESC_Type;                 
+                            
+typedef struct {            
+  uint32  Wdg_LOAD;          
+  uint32  Wdg_VALUE;         
+  uint32  Wdg_CTL;           
+  uint32  Wdg_ICR;           
+  uint32  Wdg_RIS;           
+  uint32  Wdg_MIS;           
+  uint32  Wdg_RESERVED[256]; 
+  uint32  Wdg_TEST;          
+  uint32  Wdg_RESERVED1[505];
+  uint32  Wdg_LOCK;          
+}WDG_Type_BITS;
+
+typedef union 
+{
+    uint32          Register;
+    WDG_Type_BITS   BitAcess;
+}WDG_Type;
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define CORTEXM4_SYS_CNTRL_BASE_ADDRESS         (0x400FE000)
-#define CORTEXM4_PERI_BASE_ADDRESS				(0xE000E000)
+#define WATCHDOG_0_BASE                         (0x40000000UL)
+#define WATCHDOG_1_BASE                         (0x40001000UL)
+#define CORTEXM4_SYS_CNTRL_BASE_ADDRESS         (0x400FE000UL)
+#define CORTEXM4_PERI_BASE_ADDRESS				(0xE000E000UL)
 #define CORTEXM4_PERI_INTCTRL_OFFSET			(0xD04)
 #define CORTEXM4_PERI_APINT_OFFSET				(0xD0C)
 #define CORTEXM4_PERI_SYSPRI_OFFSET             (0xD18)
 #define CORTEXM4_PERI_SYSHNDCTRL_OFFSET         (0xD24)
 #define CORTEXM4_SYS_CNTRL_RESC_OFFSET          (0x05C)
+#define CORTEXM4_SYS_CNTRL_RCC_OFFSET           (0x060)
+#define CORTEXM4_SYS_CNTRL_RCC2_OFFSET          (0x070)
+#define CORTEXM4_SYS_CNTRL_RCG_OFFSET           (0x600)
 
 #define CORTEXM4_PERI_NVIC_OFFSET				(0x100)
 
@@ -132,6 +156,10 @@ typedef union
 
 #define RESC                                   ((volatile RESC_Type*)(CORTEXM4_SYS_CNTRL_BASE_ADDRESS + CORTEXM4_SYS_CNTRL_RESC_OFFSET))
 
+#define RCG                                    *((volatile uint32*)(CORTEXM4_SYS_CNTRL_BASE_ADDRESS + CORTEXM4_SYS_CNTRL_RCG_OFFSET))
+
+#define WDG0                                   ((volatile WDG_Type*)(WATCHDOG_0_BASE))
+#define WDG1                                   ((volatile WDG_Type*)(WATCHDOG_1_BASE))
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
  *********************************************************************************************************************/

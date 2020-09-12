@@ -44,10 +44,7 @@ const Mcu_ConfigType Mcu_Config[] =
 
 const Mcu_Clock_Gate Mcu_Activated_Clock_Gates[] = 
 {
-    Mcu_Clock_Gate_WD0,
-    Mcu_Clock_Gate_GPIOA,
-    Mcu_Clock_Gate_GPIOB,
-    Mcu_Clock_Gate_GPIOE,    
+    Mcu_Clock_Gate_WD1,
 };
 
 
