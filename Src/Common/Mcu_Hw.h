@@ -99,13 +99,8 @@ typedef struct {
   uint32  Wdg_TEST;          
   uint32  Wdg_RESERVED1[505];
   uint32  Wdg_LOCK;          
-}WDG_Type_BITS;
-
-typedef union 
-{
-    uint32          Register;
-    WDG_Type_BITS   BitAcess;
 }WDG_Type;
+
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/

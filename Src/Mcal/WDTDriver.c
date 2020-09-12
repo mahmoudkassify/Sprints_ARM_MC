@@ -36,8 +36,8 @@ const Wdg_ConfigType * gPtrWdg_Config = NULL;
 /**********************************************************************************************************************
  *  LOCAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
-#define WDG_LOCK()                  (WDG1->BitAcess.Wdg_LOCK = 0)
-#define WDG_UNLOCK()                (WDG1->BitAcess.Wdg_LOCK = WDG_UNLOCK_VAL)
+#define WDG_LOCK()                  (WDG1->Wdg_LOCK = 0)
+#define WDG_UNLOCK()                (WDG1->Wdg_LOCK = WDG_UNLOCK_VAL)
 
 /**********************************************************************************************************************
  *  LOCAL FUNCTIONS
@@ -62,29 +62,29 @@ void Wdg_Init(const Wdg_ConfigType * Wdg_Config)
     WDG_UNLOCK();    
     
     /*Load the WDTLOAD register with the desired timer load value.*/
-    WDG1->BitAcess.Wdg_LOAD = WDG_CONVERT_TIME_TO_TICK(Wdg_Config->WdgInitialValue_ms);
+    WDG1->Wdg_LOAD = WDG_CONVERT_TIME_TO_TICK(Wdg_Config->WdgInitialValue_ms);
     
     /*If WDT1, wait for the WRC bit in the WDTCTL register to be set.*/
-    SET_BIT(WDG1->BitAcess.Wdg_CTL,WRC);
+    SET_BIT(WDG1->Wdg_CTL,WRC);
     
     /*If the Watchdog is configured to trigger system resets, set the RESEN bit in the WDTCTL register.*/
-    SET_BIT(WDG1->BitAcess.Wdg_CTL,RESEN);
+    SET_BIT(WDG1->Wdg_CTL,RESEN);
 
     /*If WDT1, wait for the WRC bit in the WDTCTL register to be set.*/
-    SET_BIT(WDG1->BitAcess.Wdg_CTL,WRC);
+    SET_BIT(WDG1->Wdg_CTL,WRC);
 
     /*Interrupt type*/
     if(WDT_InterruptStandard == Wdg_Config->WdgInterruptType)
     {
-        CLR_BIT(WDG1->BitAcess.Wdg_CTL,INTTYPE);
+        CLR_BIT(WDG1->Wdg_CTL,INTTYPE);
     }
     else
     {
-        SET_BIT(WDG1->BitAcess.Wdg_CTL,INTTYPE);
+        SET_BIT(WDG1->Wdg_CTL,INTTYPE);
     }
     
     /*Set the INTEN bit in the WDTCTL register to enable the Watchdog*/
-    SET_BIT(WDG1->BitAcess.Wdg_CTL,INTEN);
+    SET_BIT(WDG1->Wdg_CTL,INTEN);
 
     /*lock the control register*/
     WDG_LOCK();    
@@ -96,7 +96,7 @@ void Wdg_SetTriggerCondition(uint16 u16_msec)
     {
         WDG_UNLOCK();
         
-        WDG1->BitAcess.Wdg_LOAD = WDG_CONVERT_TIME_TO_TICK(u16_msec);
+        WDG1->Wdg_LOAD = WDG_CONVERT_TIME_TO_TICK(u16_msec);
         
         WDG_LOCK();
     }
@@ -106,7 +106,7 @@ void Wdg_Reset(void)
 {
     WDG_UNLOCK();
     
-    WDG1->BitAcess.Wdg_ICR = 0;
+    WDG1->Wdg_ICR = 0;
     
     WDG_LOCK();
 }
