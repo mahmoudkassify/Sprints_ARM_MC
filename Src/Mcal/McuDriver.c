@@ -39,6 +39,7 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
+extern const Mcu_Clock_Gate Mcu_Activated_Clock_Gates[ACTIVATED_CLOCK_GATES];
 
 const Mcu_ConfigType * gPtrMcu_Config = NULL;
 
@@ -112,7 +113,21 @@ Mcu_Reset_Cause_Type Mcu_RawResetType(void)
 
 Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockType)
 {
-    //gPtrMcu_Config[(uint8)ClockType];
+    uint8   u8_address_offset = 0;
+    uint16  u16_idx = 0;
+    uint32  u32_address = 0;
+    
+    for(u16_idx = 0; u16_idx < ACTIVATED_CLOCK_GATES; u16_idx++)
+    {
+        u32_address = GET_ADDR(CORTEXM4_RCG_BASE_ADDRESS, ((Mcu_Activated_Clock_Gates[u16_idx] / 10) * REGISTER_SIZE));
+
+        u8_address_offset = (uint8)((Mcu_Activated_Clock_Gates[u16_idx] % 10) * REGISTER_SIZE);
+        
+        SET_BIT(WRTIE_ADD(u32_address), u8_address_offset);
+    }
+    
+    /*Delay*/
+    for(u16_idx = 0; u16_idx < 1000; u16_idx++);
     
     return E_OK;
 }

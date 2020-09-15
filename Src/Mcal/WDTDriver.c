@@ -52,9 +52,6 @@ const Wdg_ConfigType * gPtrWdg_Config = NULL;
 
 void Wdg_Init(const Wdg_ConfigType * Wdg_Config)
 {   
-    /*TODO: Should be done on MCU driver*/
-    SET_BIT(RCG,1); 
-    
     /*Save the Config*/
     gPtrWdg_Config = Wdg_Config;
     

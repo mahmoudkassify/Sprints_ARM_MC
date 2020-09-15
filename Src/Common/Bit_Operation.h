@@ -29,6 +29,10 @@
  *  GLOBAL FUNCTION MACROS
  *****---------------------*/
 
+#define GET_ADDR(base_add, offset)                          ((uint32)((base_add) + (offset)))
+
+#define WRTIE_ADD(address)                                  (*((uint32 *)(address)))
+
 #define SET_BIT(var, bit_num)                               (var) |= (1UL << (bit_num))
 
 #define CLR_BIT(var, bit_num)                               (var) &= (~(1UL << (bit_num)))

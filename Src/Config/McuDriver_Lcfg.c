@@ -42,9 +42,21 @@ const Mcu_ConfigType Mcu_Config[] =
     },
 };
 
-const Mcu_Clock_Gate Mcu_Activated_Clock_Gates[] = 
+const Mcu_Clock_Gate Mcu_Activated_Clock_Gates[ACTIVATED_CLOCK_GATES] = 
 {
     Mcu_Clock_Gate_WD1,
+    Mcu_Clock_Gate_GP0,
+    Mcu_Clock_Gate_GP1,
+    Mcu_Clock_Gate_GP2,
+    Mcu_Clock_Gate_GP3,
+    Mcu_Clock_Gate_GP4,
+    Mcu_Clock_Gate_GP5,
+    Mcu_Clock_Gate_WTIMER0,
+    Mcu_Clock_Gate_WTIMER1,
+    Mcu_Clock_Gate_WTIMER2,
+    Mcu_Clock_Gate_WTIMER3,
+    Mcu_Clock_Gate_WTIMER4,
+    Mcu_Clock_Gate_WTIMER5,  
 };
 
 

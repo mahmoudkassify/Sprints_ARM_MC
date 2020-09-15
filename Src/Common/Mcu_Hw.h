@@ -101,9 +101,54 @@ typedef struct {
   uint32  Wdg_LOCK;          
 }WDG_Type;
 
+typedef struct {            
+  uint32  Timer_GPTMCFG;
+  uint32  Timer_GPTMTAMR;
+  uint32  Timer_GPTMTBMR;
+  uint32  Timer_GPTMCTL;
+  uint32  Timer_GPTMSYNC;
+  uint32  Timer_RSVD0;
+  uint32  Timer_GPTMIMR;
+  uint32  Timer_GPTMRIS;
+  uint32  Timer_GPTMMIS;
+  uint32  Timer_GPTMICR;
+  uint32  Timer_GPTMTAILR;
+  uint32  Timer_GPTMTBILR;
+  uint32  Timer_GPTMTAMATCHR;
+  uint32  Timer_GPTMTBMATCHR;
+  uint32  Timer_GPTMTAPR;
+  uint32  Timer_GPTMTBPR;
+  uint32  Timer_GPTMTAPMR;
+  uint32  Timer_GPTMTBPMR;
+  uint32  Timer_GPTMTAR;
+  uint32  Timer_GPTMTBR;
+  uint32  Timer_GPTMTAV;
+  uint32  Timer_GPTMTBV;
+  uint32  Timer_GPTMRTCPD;
+  uint32  Timer_GPTMTAPS;
+  uint32  Timer_GPTMTBPS;
+  uint32  Timer_GPTMTAPV;
+  uint32  Timer_GPTMTBPV;
+  uint32  Timer_RSVD1[981U];
+  uint32  Timer_GPTMPP;    
+}Timer_Type;
+
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
+#define Timer_0_BASE_ADDRESS					(0x40030000)
+#define Timer_1_BASE_ADDRESS					(0x40031000)
+#define Timer_2_BASE_ADDRESS					(0x40032000)
+#define Timer_3_BASE_ADDRESS					(0x40033000)
+#define Timer_4_BASE_ADDRESS					(0x40034000)
+#define Timer_5_BASE_ADDRESS					(0x40035000)
+#define Wide_Timer_0_BASE_ADDRESS				(0x40036000)
+#define Wide_Timer_1_BASE_ADDRESS				(0x40037000)
+#define Wide_Timer_2_BASE_ADDRESS				(0x4004C000)
+#define Wide_Timer_3_BASE_ADDRESS				(0x4004D000)
+#define Wide_Timer_4_BASE_ADDRESS				(0x4004E000)
+#define Wide_Timer_5_BASE_ADDRESS				(0x4004F000)
+
 #define WATCHDOG_0_BASE                         (0x40000000UL)
 #define WATCHDOG_1_BASE                         (0x40001000UL)
 #define CORTEXM4_SYS_CNTRL_BASE_ADDRESS         (0x400FE000UL)
@@ -116,6 +161,8 @@ typedef struct {
 #define CORTEXM4_SYS_CNTRL_RCC_OFFSET           (0x060)
 #define CORTEXM4_SYS_CNTRL_RCC2_OFFSET          (0x070)
 #define CORTEXM4_SYS_CNTRL_RCG_OFFSET           (0x600)
+
+#define CORTEXM4_RCG_BASE_ADDRESS               (CORTEXM4_SYS_CNTRL_BASE_ADDRESS + CORTEXM4_SYS_CNTRL_RCG_OFFSET)
 
 #define CORTEXM4_PERI_NVIC_OFFSET				(0x100)
 

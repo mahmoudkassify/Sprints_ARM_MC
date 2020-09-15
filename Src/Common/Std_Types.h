@@ -33,6 +33,9 @@
 #define STD_ON       (1u)
 #define STD_OFF      (0u)
 
+#define ENABLE       (1u)
+#define DISABLE      (0u)       
+
 #define NULL         ((void *) 0)
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES

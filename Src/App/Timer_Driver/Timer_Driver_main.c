@@ -16,8 +16,10 @@
  *  INCLUDES
  *********************************************************************************************************************/
 #include "Common.h"
+#include "WDTDriver.h"
 #include "Timer.h"
 #include "IntCtrl.h"
+#include "McuDriver.h"
 
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
@@ -47,6 +49,8 @@ int main(void)
 {    
 	CPUDRIVER_ENABLE_ALL_Interupts();
     IntCrtl_Init();
+    
+    Mcu_InitClock(Mcu_Clock_1);
     
     Wdg_Init(&Wdg_Config);
     
