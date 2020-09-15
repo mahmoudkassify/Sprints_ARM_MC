@@ -17,7 +17,7 @@
 #include "Std_Types.h"
 
 
-#define INTCTRL_SUPPORTED_NUMBER            (2)
+#define INTCTRL_SUPPORTED_NUMBER            (13)
 
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS

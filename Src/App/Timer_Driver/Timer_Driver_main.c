@@ -33,6 +33,9 @@
  *  GLOBAL DATA
  *********************************************************************************************************************/
 extern const Wdg_ConfigType Wdg_Config;
+
+extern const Gpt_ConfigType Gpt_Config[];
+
 /**********************************************************************************************************************
  *  LOCAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
@@ -54,9 +57,19 @@ int main(void)
     
     Wdg_Init(&Wdg_Config);
     
+    Gpt_Init(Gpt_Config);
+    
 	for(;;)
     {
-
+        static boolean b_first = TRUE;
+        
+        if(TRUE == b_first)
+        {
+            b_first = FALSE;
+            
+            Gpt_StartTimer(Gpt_ChannelType_16_32_TIMER0, 0x0FFF);
+            Gpt_StartTimer(Gpt_ChannelType_32_64_WIDE_TIMER0, 0x0FFFFFFF);
+        }
     }
 }
 

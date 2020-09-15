@@ -42,7 +42,7 @@ const Gpt_ConfigType Gpt_Config[GPT_ACTIVATED_TIMERS] =
     {
         .ChannelType            = Gpt_ChannelType_16_32_TIMER0,
         .ChannelMode            = GPT_CH_MODE_ONESHOT,
-        .TickFrequency          = 0,
+        .TickFrequency          = 1000000,
         .TickValueMax           = 0xFFFF,
         .UserNotificationCB     = Timer0_16_32_cb,
     },
@@ -50,7 +50,7 @@ const Gpt_ConfigType Gpt_Config[GPT_ACTIVATED_TIMERS] =
     {
         .ChannelType            = Gpt_ChannelType_32_64_WIDE_TIMER0,
         .ChannelMode            = GPT_CH_MODE_CONTINUOUS,
-        .TickFrequency          = 0,
+        .TickFrequency          = 16000000,
         .TickValueMax           = 0xFFFFFFFF,
         .UserNotificationCB     = WTimer0_32_64_cb,
     },

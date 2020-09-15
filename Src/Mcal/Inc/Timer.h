@@ -93,8 +93,6 @@ void Gpt_StartTimer(Gpt_ChannelType Channel, Gpt_ValueType Value);
      
 void Gpt_StopTimer(Gpt_ChannelType Channel);
      
-void Gpt_Notification_Channel(void);
-
 Gpt_ValueType Gpt_GetTimeElapsed(Gpt_ChannelType Channel);
 
 Gpt_ValueType Gpt_GetTimeRemaining(Gpt_ChannelType Channel);

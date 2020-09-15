@@ -17,13 +17,15 @@
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
 *********************************************************************************************************************/	
-#define TAEN    (0)
-#define TBEN    (8)
+#define USING_BIT_BAND  (1)
 
-#define TAMIE   (5)
-#define TACDIR  (4)
-
-#define TATOIM  (0)
+#define TAEN            (0)
+#define TBEN            (8)
+        
+#define TAMIE           (5)
+#define TACDIR          (4)
+        
+#define TATOIM          (0)
 /**********************************************************************************************************************
  *  LOCAL DATA 
  *********************************************************************************************************************/
@@ -109,6 +111,28 @@ static void Gpt_EnablePredefinedTimers(void)
     
 }
 
+static Gpt_Notification User_CB(Gpt_ChannelType Channel)
+{
+    uint16      u16_idx = 0;
+    Timer_Type * PtrTimerReg = (Timer_Type  *)get_BaseAdd(Channel);
+	Gpt_Notification user_cb = NULL;
+    
+    for(u16_idx = 0; u16_idx < GPT_ACTIVATED_TIMERS; u16_idx++)
+    {
+        if(Channel == GlobalTimersConfigPtr[u16_idx].ChannelType)
+        {
+            break;
+        }
+	}
+
+    if(GPT_ACTIVATED_TIMERS != u16_idx)
+    {
+		user_cb = GlobalTimersConfigPtr[u16_idx].UserNotificationCB;
+	}
+	
+	return user_cb;
+} 
+
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
@@ -169,23 +193,71 @@ void Gpt_EnableNotification(Gpt_ChannelType Channel)
      
 void Gpt_StartTimer(Gpt_ChannelType Channel, Gpt_ValueType Value)
 {
+    uint16      u16_idx = 0;
+    Timer_Type * PtrTimerReg = (Timer_Type  *)get_BaseAdd(Channel);
+    
+    for(u16_idx = 0; u16_idx < GPT_ACTIVATED_TIMERS; u16_idx++)
+    {
+        if(Channel == GlobalTimersConfigPtr[u16_idx].ChannelType)
+        {
+            break;
+        }
+	}
+    
+    if(GPT_ACTIVATED_TIMERS != u16_idx)
+    {
+        uint32 u32_prescalar = (uint32)GPT_DEFAULT_FREQ / (uint32)GlobalTimersConfigPtr[u16_idx].TickFrequency;
+        
+        if(Value > (GlobalTimersConfigPtr[u16_idx].TickValueMax))
+        {
+            Value = GlobalTimersConfigPtr[u16_idx].TickValueMax;
+        }
+        
+        /*The ticks is multiplied by the prescalar*/
+        PtrTimerReg->Timer_GPTMTAILR = Value * u32_prescalar;
+        
+        /*Start timer*/
+#if USING_BIT_BAND
+        PERIPHERAL_BITBAND((uint32)(&(PtrTimerReg->Timer_GPTMCTL)),TAEN) = 1;
+#else        
+        SET_BIT(PtrTimerReg->Timer_GPTMCTL,TAEN);
+#endif        
+    }
     
 }
      
 void Gpt_StopTimer(Gpt_ChannelType Channel)
 {
+    Timer_Type * PtrTimerReg = (Timer_Type  *)get_BaseAdd(Channel);
     
+#if USING_BIT_BAND
+    PERIPHERAL_BITBAND((uint32)(&(PtrTimerReg->Timer_GPTMCTL)),TAEN) = 0;
+#else        
+    CLR_BIT(PtrTimerReg->Timer_GPTMCTL,TAEN);
+#endif    
 }
      
-void Gpt_Notification_Channel(void)
-{
-    
-}
 
 Gpt_ValueType Gpt_GetTimeElapsed(Gpt_ChannelType Channel)
 {
     Gpt_ValueType RetVal = 0;
+    uint16      u16_idx = 0;
+    Timer_Type * PtrTimerReg = (Timer_Type  *)get_BaseAdd(Channel);
     
+    for(u16_idx = 0; u16_idx < GPT_ACTIVATED_TIMERS; u16_idx++)
+    {
+        if(Channel == GlobalTimersConfigPtr[u16_idx].ChannelType)
+        {
+            break;
+        }
+	}
+    
+    if(GPT_ACTIVATED_TIMERS != u16_idx)
+    {
+        uint32 u32_prescalar = (uint32)GPT_DEFAULT_FREQ / (uint32)GlobalTimersConfigPtr[u16_idx].TickFrequency;
+        
+        RetVal = PtrTimerReg->Timer_GPTMTAV / u32_prescalar;
+    }        
     
     return RetVal;
 }
@@ -193,19 +265,101 @@ Gpt_ValueType Gpt_GetTimeElapsed(Gpt_ChannelType Channel)
 Gpt_ValueType Gpt_GetTimeRemaining(Gpt_ChannelType Channel)
 {
     Gpt_ValueType RetVal = 0;
+    uint16      u16_idx = 0;
+    Timer_Type * PtrTimerReg = (Timer_Type  *)get_BaseAdd(Channel);
     
+    for(u16_idx = 0; u16_idx < GPT_ACTIVATED_TIMERS; u16_idx++)
+    {
+        if(Channel == GlobalTimersConfigPtr[u16_idx].ChannelType)
+        {
+            break;
+        }
+	}
     
-    return RetVal;    
+    if(GPT_ACTIVATED_TIMERS != u16_idx)
+    {
+        uint32 u32_prescalar = (uint32)GPT_DEFAULT_FREQ / (uint32)GlobalTimersConfigPtr[u16_idx].TickFrequency;
+        
+        Gpt_ValueType OrignalTime = PtrTimerReg->Timer_GPTMTAILR;
+        Gpt_ValueType CurrentTime = PtrTimerReg->Timer_GPTMTAV;
+        
+        RetVal = (OrignalTime - CurrentTime) / u32_prescalar;
+    }        
+    
+    return RetVal;   
 }
 
 Std_ReturnType Gpt_GetPredefTimerValue(Gpt_PredefTimerType PredefTimer, uint32* TimeValuePtr)
 {
     Std_ReturnType RetError = E_OK;
     
+    *TimeValuePtr = 0x00000;
+    
+    /*TODO*/
     
     return RetError;    
 }
 
+
+void TIMER0A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_16_32_TIMER0);
+}
+
+void TIMER1A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_16_32_TIMER1);
+}
+
+void TIMER2A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_16_32_TIMER2);
+}
+
+void TIMER3A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_16_32_TIMER3);
+}
+
+void TIMER4A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_16_32_TIMER4);
+}
+
+void TIMER5A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_16_32_TIMER5);
+}
+
+void WTIMER0A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER0);
+}
+
+void WTIMER1A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER1);
+}
+
+void WTIMER2A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER2);
+}
+
+void WTIMER3A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER3);
+}
+
+void WTIMER4A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER4);
+}
+
+void WTIMER5A_Handler(void)
+{
+    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER5);
+}
 /**********************************************************************************************************************
  *  END OF FILE: WDTDriver.c
  *********************************************************************************************************************/

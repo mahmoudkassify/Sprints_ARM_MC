@@ -43,7 +43,7 @@
 
 #define ARRAY_SIZE(arr)                                     (sizeof(arr)/sizeof(arr[0]))
 
-#define WRITE_BITBAND(alias_base, base_add, add, bit_num)   (alias_base +( 32 * (add - base_add) ) + bit_num * 4)  
+#define WRITE_BITBAND(alias_base, base_add, add, bit_num)   (*((volatile uint32 *)(alias_base +( 32 * (add - base_add) ) + bit_num * 4)))  
 
 #define PERIPHERAL_BITBAND(add, bit_num)                    WRITE_BITBAND(PERIPHERAL_BITBAND_ALIAS, PERIPHERAL_BITBAND_REGION, add, bit_num)  
 
