@@ -303,62 +303,110 @@ Std_ReturnType Gpt_GetPredefTimerValue(Gpt_PredefTimerType PredefTimer, uint32* 
 
 void TIMER0A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_16_32_TIMER0);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_16_32_TIMER0);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void TIMER1A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_16_32_TIMER1);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_16_32_TIMER1);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void TIMER2A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_16_32_TIMER2);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_16_32_TIMER2);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void TIMER3A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_16_32_TIMER3);
+    Gpt_Notification user_cb = User_CB(Gpt_ChannelType_16_32_TIMER3);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void TIMER4A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_16_32_TIMER4);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_16_32_TIMER4);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void TIMER5A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_16_32_TIMER5);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_16_32_TIMER5);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void WTIMER0A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER0);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_32_64_WIDE_TIMER0);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void WTIMER1A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER1);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_32_64_WIDE_TIMER1);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void WTIMER2A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER2);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_32_64_WIDE_TIMER2);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void WTIMER3A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER3);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_32_64_WIDE_TIMER3);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void WTIMER4A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER4);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_32_64_WIDE_TIMER4);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 
 void WTIMER5A_Handler(void)
 {
-    User_CB(Gpt_ChannelType_32_64_WIDE_TIMER5);
+	Gpt_Notification user_cb = User_CB(Gpt_ChannelType_32_64_WIDE_TIMER5);
+    if(NULL != user_cb)
+	{
+		user_cb();
+	}
 }
 /**********************************************************************************************************************
  *  END OF FILE: WDTDriver.c
