@@ -168,7 +168,7 @@ void Gpt_Init(const Gpt_ConfigType* ConfigPtr)
         */        
         PtrTimerReg->Timer_GPTMTAMR |= (1 << TACDIR) | (((uint8)GlobalTimersConfigPtr[u16_idx].ChannelMode) & 0xFC);
                                         
-        PtrTimerReg->Timer_GPTMIMR = 0;       
+        PtrTimerReg->Timer_GPTMIMR = 0;
     }
     
     

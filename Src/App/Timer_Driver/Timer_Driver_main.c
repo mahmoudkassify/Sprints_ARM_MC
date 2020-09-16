@@ -67,7 +67,10 @@ int main(void)
         {
             b_first = FALSE;
             
+            Gpt_EnableNotification(Gpt_ChannelType_16_32_TIMER0);
             Gpt_StartTimer(Gpt_ChannelType_16_32_TIMER0, 0x0FFF);
+            
+            Gpt_EnableNotification(Gpt_ChannelType_32_64_WIDE_TIMER0);
             Gpt_StartTimer(Gpt_ChannelType_32_64_WIDE_TIMER0, 0x0FFFFFFF);
         }
     }
